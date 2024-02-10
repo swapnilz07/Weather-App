@@ -39,12 +39,12 @@ const Present = ({ data }: presentProps) => {
             </div>
           )}
         </div>
-        <div className="flex justify-start">
-          <p className="text-5xl text-white">
+        <div className="flex justify-start py-2">
+          <p className="text-4xl text-white">
             {data.current.temp_c}
             <span>°</span>
           </p>
-          <span className="text-white text-5xl pl-5">
+          <span className="text-white text-4xl pl-5">
             {data.current.condition.text}
           </span>
         </div>

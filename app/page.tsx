@@ -7,6 +7,29 @@ import Present from "./components/Present";
 import WeatherDetails from "./components/WeatherDetails";
 import WeekForecast from "./components/WeekForecast";
 
+interface DayForecast {
+  date: string; // Assuming date is represented as a string
+  temperature: {
+    min: number;
+    max: number;
+  };
+  condition: {
+    text: string;
+    icon: string;
+  };
+}
+
+interface WeatherData {
+  current?: CurrentData;
+  location?: {
+    name: string;
+    region: string;
+  };
+  forecast?: {
+    forecastday: DayForecast[]; // Using the defined DayForecast interface
+  };
+}
+
 interface CurrentData {
   temp_c?: number;
 }
@@ -61,7 +84,8 @@ export default function Home() {
     content = (
       <>
         <div className="flex flex-col md:flex-row px-12 items-center justify-between">
-          <Present data={data} />
+          {data.current && <Present data={data} />}
+
           <WeekForecast data={data} />
         </div>
         <div>

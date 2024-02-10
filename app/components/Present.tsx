@@ -19,6 +19,9 @@ interface presentProps {
 }
 
 const Present = ({ data }: presentProps) => {
+  if (!data.current) {
+    return null; // or handle the case when current is undefined
+  }
   const presentDate = getPresentDate();
   const weatherIcon = data.current ? data.current.condition.icon : null;
   return (
@@ -39,12 +42,12 @@ const Present = ({ data }: presentProps) => {
             </div>
           )}
         </div>
-        <div className="flex justify-start py-2">
-          <p className="text-4xl text-white">
+        <div className="flex justify-start">
+          <p className="text-5xl text-white">
             {data.current.temp_c}
             <span>°</span>
           </p>
-          <span className="text-white text-4xl pl-5">
+          <span className="text-white text-5xl pl-5">
             {data.current.condition.text}
           </span>
         </div>

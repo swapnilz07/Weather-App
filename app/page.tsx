@@ -8,7 +8,7 @@ import WeatherDetails from "./components/WeatherDetails";
 import WeekForecast from "./components/WeekForecast";
 
 interface DayForecast {
-  date: string; // Assuming date is represented as a string
+  date: string;
   temperature: {
     min: number;
     max: number;
@@ -26,11 +26,11 @@ interface WeatherData {
     region: string;
   };
   forecast?: {
-    forecastday: DayForecast[]; // Using the defined DayForecast interface
+    forecastday: DayForecast[];
   };
 }
 
-interface CurrentData {
+export interface CurrentData {
   temp_c?: number;
 }
 
@@ -39,7 +39,7 @@ interface WeatherData {
 }
 
 export default function Home() {
-  const [data, setData] = useState<WeatherData>({});
+  const [data, setData] = useState<any>({});
   const [location, setLocation] = useState<string>("");
   const [error, setError] = useState<string>("");
 
@@ -85,12 +85,9 @@ export default function Home() {
       <>
         <div className="flex flex-col md:flex-row px-12 items-center justify-between">
           {data.current && <Present data={data} />}
-
-          <WeekForecast data={data} />
+          {data.current && <WeekForecast data={data} />}
         </div>
-        <div>
-          <WeatherDetails data={data} />
-        </div>
+        <div>{data.current && <WeatherDetails data={data} />}</div>
       </>
     );
   }
